@@ -73,7 +73,8 @@ void loop()
 
 }
 
-void resetDisplay (void) {
+void resetDisplay (void) 
+{
   lcd.setCursor(0, 0);
   lcd.println("                ");
   lcd.setCursor(0, 1);
