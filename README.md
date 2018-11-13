@@ -1,5 +1,5 @@
 # Uselessbox
-A Uselessbox based on Arduino UNO and MPU6050 Sensor
+A Uselessbox based on Arduino UNO and MPU6050 sensor
 
 Maybe you know the common Uselessbox. If you press a switch at the top of the box a
 part of the box is opened by a servo motor and a robot-arm (2nd servo motor) leaves the box and changes the position 
