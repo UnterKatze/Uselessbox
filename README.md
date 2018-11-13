@@ -7,7 +7,7 @@ of the switch again.
 Now the robot-arm reenters the box. You can press the button again.
 This version uses the common MPU6050 accelerometer/gyroscope sensor to measure the angle 
 of the opening part and starting the secound servo motor which changes the position of the switch.
-The angle of the part which is opening will be Displayed on an 16x2 I2C display.
+The angle of the part which is opening will be displayed on an 16x2 I2C LCD.
 
 
 Parts needed:
