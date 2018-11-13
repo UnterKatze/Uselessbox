@@ -10,6 +10,7 @@
 MPU6050 accelgyro;
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
+int delayTime = 333;
 int16_t xAxis, yAxis, zAxis;
 int xResult, yResult, zResult;
 double xOffset = 0, yOffset = 0, zOffset = 0;
@@ -67,7 +68,7 @@ void loop()
   zResult = ((zAxis - zOffset) / zRange) * zMaxAngle;
   lcd.print(zResult);
 
-  delay(333);
+  delay(delayTime);
   resetDisplay();
 
 }
