@@ -4,7 +4,7 @@
 #include <LiquidCrystal_I2C.h>
 
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-#include "Wire.h"
+  #include "Wire.h"
 #endif
 
 MPU6050 accelgyro;
@@ -16,16 +16,18 @@ int xResult, yResult, zResult;
 double xOffset = 0, yOffset = 0, zOffset = 0;
 double xRange = 16300.0, yRange = 16300.0, zRange = 32600.0;
 double xMaxAngle = 90.0, yMaxAngle = 90.0, zMaxAngle = 180.0;
+int GroundSwitch = 7;
 
 #define OUTPUT_READABLE_ACCELGYRO
 
 void setup()
 {
-#if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-  Wire.begin();
-#elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
-  Fastwire::setup(400, true);
-#endif
+  pinMode(GroundSwitch, OUTPUT);  
+  #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
+    Wire.begin();
+  #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
+    Fastwire::setup(400, true);
+  #endif
 
   lcd.init();
   lcd.backlight();
@@ -47,7 +49,9 @@ void setup()
   yOffset = yOffset / 100.0;
   zOffset = zOffset / 100.0;
   resetDisplay();
+  digitalWrite(GroundSwitch, HIGH);
 }
+
 
 void loop()
 {
