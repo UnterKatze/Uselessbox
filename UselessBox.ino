@@ -22,7 +22,8 @@ int GroundSwitch = 7;
 
 void setup()
 {
-  pinMode(GroundSwitch, OUTPUT);  
+  pinMode(GroundSwitch, OUTPUT);
+  digitalWrite(GroundSwitch, LOW);
   #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
     Wire.begin();
   #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
