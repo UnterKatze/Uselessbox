@@ -81,7 +81,6 @@ void loop()
 {
   if (digitalRead(FunctionSwitch))
   {
-
     for (i = 0; i <= maxServo1Angle; i = i + 2)
     {
       accelgyro.getAcceleration(&xAxis, &yAxis, &zAxis);
@@ -118,7 +117,7 @@ void loop()
         servo2.write(servo2SwitchHit);
         delay(1000);
         servo2.write(servo2StartPos);
-
+        
         for (j = i; j >= 0; j = j - 2)
         {
           accelgyro.getAcceleration(&xAxis, &yAxis, &zAxis);
@@ -151,14 +150,16 @@ void loop()
     }
     resetDisplay();
   }
-
+  
   lcd.setCursor(0, 0);
   lcd.print("    Control");
   lcd.setCursor(0, 1);
   lcd.print("    Switch");
+  delay(1000);
 }
 
-void resetDisplay (void) {
+void resetDisplay (void) 
+{
   lcd.setCursor(0, 0);
   lcd.println("                ");
   lcd.setCursor(0, 1);
