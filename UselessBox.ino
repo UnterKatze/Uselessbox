@@ -21,11 +21,11 @@ double xRange = 16300.0, yRange = 16300.0, zRange = 32600.0;
 double xMaxAngle = 90.0, yMaxAngle = 90.0, zMaxAngle = 180.0;
 int GroundSwitch = 7;
 int FunctionSwitch = 8;
-int servo1StartPos = 0;
+int servo1StartPos = 180;
 int servo2StartPos = 0;
-int maxServo1Angle = 90;
-int servo2TriggerAngle = 45;
-int servo2SwitchHit = 90;
+int maxServo1Angle = 98;
+int servo2TriggerAngle = 30;
+int servo2SwitchHit = 150;
 int servo1Pin = 3;
 int servo2Pin = 5;
 int i, j;
@@ -81,14 +81,14 @@ void loop()
 {
   if (digitalRead(FunctionSwitch))
   {
-    for (i = 0; i <= maxServo1Angle; i = i + 2)
+    for (i = servo1StartPos; i >= maxServo1Angle; i = i - 1.5)
     {
       accelgyro.getAcceleration(&xAxis, &yAxis, &zAxis);
       xResult = ((xAxis - xOffset) / xRange) * xMaxAngle;
       yResult = ((yAxis - yOffset) / yRange) * yMaxAngle;
       zResult = ((zAxis - zOffset) / zRange) * zMaxAngle;
 
-      if (i % 10 == 0)
+      if (i % 7 == 0)
       {
         resetDisplay();
         lcd.setCursor(0, 0);
@@ -106,7 +106,7 @@ void loop()
       }
 
       servo1.write(i);
-      delay(delayTime);
+      delay(delayTime/2);
 
       if (xResult >= servo2TriggerAngle)
       {
@@ -118,14 +118,14 @@ void loop()
         delay(1000);
         servo2.write(servo2StartPos);
         
-        for (j = i; j >= 0; j = j - 2)
+        for (j = i; j <= servo1StartPos; j = j + 2)
         {
           accelgyro.getAcceleration(&xAxis, &yAxis, &zAxis);
           xResult = ((xAxis - xOffset) / xRange) * xMaxAngle;
           yResult = ((yAxis - yOffset) / yRange) * yMaxAngle;
           zResult = ((zAxis - zOffset) / zRange) * zMaxAngle;
 
-          if (j % 10 == 0)
+          if (j % 7 == 0)
           {
             resetDisplay();
             lcd.setCursor(0, 0);
@@ -142,7 +142,7 @@ void loop()
             //lcd.print(zResult);
           }
           servo1.write(j);
-          delay(delayTime);
+          delay(delayTime/2);
         }
         break;
         resetDisplay();
